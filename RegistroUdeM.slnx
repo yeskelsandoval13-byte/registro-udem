@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/RegistroUdeM.Application/RegistroUdeM.Application.csproj" />
+    <Project Path="src/RegistroUdeM.Console/RegistroUdeM.Console.csproj" />
+    <Project Path="src/RegistroUdeM.Domain/RegistroUdeM.Domain.csproj" />
+    <Project Path="src/RegistroUdeM.Infrastructure/RegistroUdeM.Infrastructure.csproj" />
+    <Project Path="src/RegistroUdeM.Laboratorio/RegistroUdeM.Laboratorio.csproj" />
+    <Project Path="src/RegistroUdeM.WinForms/RegistroUdeM.WinForms.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/RegistroUdeM.Tests/RegistroUdeM.Tests.csproj" />
+  </Folder>
+</Solution>
