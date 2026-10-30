@@ -21,7 +21,10 @@ RegistroUdeM es un sistema académico ficticio para gestionar estudiantes, docen
 | Reportes | Resumen, estudiantes por carrera y mejores índices. |
 | Laboratorio Clase 03 | `SeleccionFutbol`, `Forma`, sobrecarga. |
 
-## Ejecutar
+## Persistencia
+
+- JSON local con guardado atómico.
+- **SQL Server** con `SqlAlmacenRegistro` (ADO.NET), carga y guardado en tiempo real.
 
 ```powershell
 dotnet restore

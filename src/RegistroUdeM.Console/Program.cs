@@ -8,8 +8,8 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        var ruta = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RegistroUdeM", "registro.json");
-        var almacen = new RegistroUdeM.Infrastructure.Persistencia.JsonAlmacenRegistro(ruta);
+        var cadena = "Server=localhost;Database=RegistroUdeM;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;";
+        var almacen = new RegistroUdeM.Infrastructure.Persistencia.SqlAlmacenRegistro(cadena);
         var registro = new RegistroService(almacen);
         var matriculas = new MatriculaService(almacen);
         var pagos = new PagoService(almacen);
@@ -131,3 +131,4 @@ internal class Program
         }
     }
 }
+

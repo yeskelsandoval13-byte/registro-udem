@@ -119,6 +119,8 @@ Tablas principales:
 - `Carreras`, `Asignaturas`
 - `Matriculas`, `Pagos`, `Becas`
 
+La aplicación usa `SqlAlmacenRegistro` con ADO.NET para cargar y guardar datos en tiempo real en SQL Server.
+
 ---
 
 ## 8. Pruebas

@@ -13,7 +13,7 @@
 El dominio no conoce la interfaz ni la persistencia.
 
 ## Persistencia
-`IAlmacenRegistro` permite cambiar JSON por SQL Server sin modificar los servicios.
+`IAlmacenRegistro` permite cambiar JSON por SQL Server sin modificar los servicios. La implementación SQL es `SqlAlmacenRegistro`.
 
 ## Futuro
 - SQL Server + ADO.NET.

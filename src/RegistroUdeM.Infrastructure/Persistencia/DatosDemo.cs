@@ -19,8 +19,8 @@ public static class DatosDemo
         var cont = new Asignatura { Codigo = "CONT", Nombre = "Contabilidad I", Creditos = 3, CarreraId = adm.Id };
         datos.Asignaturas.AddRange([poo, bd, cont]);
 
-        var est1 = new Estudiante { Nombre = "María", Apellido = "González", Documento = "001-010101-0001A", Telefono = "8888-1111", Email = "maria@udem.edu.ni", CarreraId = ing.Id, FechaIngreso = new DateTime(2024, 2, 1) };
-        var est2 = new Estudiante { Nombre = "Carlos", Apellido = "Pérez", Documento = "001-020202-0002B", Telefono = "8888-2222", Email = "carlos@udem.edu.ni", CarreraId = adm.Id, FechaIngreso = new DateTime(2023, 8, 1) };
+        var est1 = new Estudiante { Nombre = "María", Apellido = "González", Documento = "001-010101-0001A", Telefono = "8888-1111", Email = "maria@udem.edu.ni", Carnet = "2024-001", CarreraId = ing.Id, FechaIngreso = new DateTime(2024, 2, 1) };
+        var est2 = new Estudiante { Nombre = "Carlos", Apellido = "Pérez", Documento = "001-020202-0002B", Telefono = "8888-2222", Email = "carlos@udem.edu.ni", Carnet = "2023-002", CarreraId = adm.Id, FechaIngreso = new DateTime(2023, 8, 1) };
         datos.Estudiantes.AddRange([est1, est2]);
 
         datos.Docentes.Add(new Docente { Nombre = "Ana", Apellido = "Martínez", Documento = "001-030303-0003C", Telefono = "8888-3333", Especialidad = "Ingeniería de Software", GradoAcademico = "Maestría" });
