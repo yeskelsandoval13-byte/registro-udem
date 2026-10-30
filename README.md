@@ -37,6 +37,7 @@ dotnet test
 
 ## Documentación
 - `docs/AVANCE.md`
+- `docs/AVANCE.docx` (versión Word para entrega/estudio)
 - `docs/ARQUITECTURA.md`
 - `docs/CLASE_03.md`
 - `docs/GUION_DEFENSA.md`
