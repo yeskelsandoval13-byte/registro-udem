@@ -132,6 +132,20 @@ dotnet run --project src/RegistroUdeM.Console
 dotnet run --project src/RegistroUdeM.WinForms
 ```
 
+## 10. Diagramas incluidos
+
+### Arquitectura
+
+![Arquitectura](diagramas/arquitectura.png)
+
+### Diagrama de clases
+
+![Diagrama de clases](diagramas/clases.png)
+
+### Modelo conceptual de base de datos
+
+![Modelo conceptual](diagramas/bd-conceptual.png)
+
 ---
 
 ## 9. Conclusión
