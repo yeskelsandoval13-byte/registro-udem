@@ -100,4 +100,3 @@ CREATE TABLE Becas (
     FOREIGN KEY (EstudianteId) REFERENCES Estudiantes(EstudianteId)
 );
 GO
-```
