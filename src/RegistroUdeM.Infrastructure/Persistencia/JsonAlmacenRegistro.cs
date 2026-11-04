@@ -4,6 +4,9 @@ using RegistroUdeM.Domain;
 
 namespace RegistroUdeM.Infrastructure.Persistencia;
 
+/// <summary>
+/// Almacén JSON con guardado atómico y recuperación de archivos dañados.
+/// </summary>
 public sealed class JsonAlmacenRegistro : IAlmacenRegistro
 {
     private readonly string _ruta;

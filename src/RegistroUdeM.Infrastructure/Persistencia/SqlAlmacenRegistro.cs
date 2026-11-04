@@ -8,6 +8,9 @@ using Microsoft.Data.SqlClient;
 
 namespace RegistroUdeM.Infrastructure.Persistencia;
 
+/// <summary>
+/// Almacén que carga y guarda el registro universitario en SQL Server.
+/// </summary>
 public sealed class SqlAlmacenRegistro : IAlmacenRegistro
 {
     private readonly string _cadenaConexion;

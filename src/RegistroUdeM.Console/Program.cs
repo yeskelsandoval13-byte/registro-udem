@@ -4,6 +4,9 @@ using RegistroUdeM.Laboratorio.Clase03;
 
 namespace RegistroUdeM.AppConsole;
 
+/// <summary>
+/// Punto de entrada de la consola. Permite operar el registro y ejecutar la demo.
+/// </summary>
 internal class Program
 {
     private static string ObtenerCadenaConexion()

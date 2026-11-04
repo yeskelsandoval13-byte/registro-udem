@@ -1,16 +1,25 @@
 namespace RegistroUdeM.Domain.Common;
 
+/// <summary>
+/// Clase base de todas las entidades. Centraliza la identidad y la fecha de creación.
+/// </summary>
 public abstract class EntidadBase
 {
     public Guid Id { get; set; } = Guid.NewGuid();
     public DateTime CreadoEn { get; set; } = DateTime.Now;
 }
 
+/// <summary>
+/// Excepción para errores esperados de negocio, con mensaje claro para el usuario.
+/// </summary>
 public class ReglaNegocioException : Exception
 {
     public ReglaNegocioException(string mensaje) : base(mensaje) { }
 }
 
+/// <summary>
+/// Validaciones reutilizables para mantener reglas consistentes.
+/// </summary>
 public static class Validador
 {
     public static void TextoRequerido(string? valor, string campo)

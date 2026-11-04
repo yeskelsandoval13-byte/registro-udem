@@ -35,6 +35,23 @@ dotnet run --project src/RegistroUdeM.WinForms
 dotnet test
 ```
 
+## Ejecutar en otra computadora
+
+1. Instalar .NET SDK 10.
+2. Instalar SQL Server y crear la base ejecutando `docs/bd/registro_udem.sql`.
+3. Clonar el repositorio.
+4. Compilar:
+   ```powershell
+   dotnet build RegistroUdeM.slnx
+   ```
+5. Ejecutar:
+   ```powershell
+   dotnet run --project src/RegistroUdeM.Console
+   dotnet run --project src/RegistroUdeM.WinForms
+   ```
+
+Si la instancia de SQL Server es diferente, cambia `appsettings.json` o la variable `REGISTROUDEM_SQL`.
+
 ## Documentación
 - `docs/AVANCE.md`
 - `docs/AVANCE.docx` (versión Word para entrega/estudio)

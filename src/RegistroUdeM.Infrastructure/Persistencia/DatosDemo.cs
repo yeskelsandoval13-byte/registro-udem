@@ -5,6 +5,9 @@ using RegistroUdeM.Domain.Personas;
 
 namespace RegistroUdeM.Infrastructure.Persistencia;
 
+/// <summary>
+/// Datos de demostración para la primera ejecución.
+/// </summary>
 public static class DatosDemo
 {
     public static RegistroData Crear()

@@ -6,6 +6,9 @@ namespace RegistroUdeM.Domain.Personas;
 [JsonDerivedType(typeof(Estudiante), "estudiante")]
 [JsonDerivedType(typeof(Docente), "docente")]
 [JsonDerivedType(typeof(Administrativo), "administrativo")]
+/// <summary>
+/// Persona base del sistema universitario. No se registra una persona genérica.
+/// </summary>
 public abstract class Persona : Common.EntidadBase
 {
     public string Nombre { get; set; } = string.Empty;
@@ -25,6 +28,9 @@ public enum EstadoEstudiante
     Suspendido
 }
 
+/// <summary>
+/// Estudiante universitario. Guarda carrera, carnet, estado e índice académico.
+/// </summary>
 public sealed class Estudiante : Persona
 {
     public string Carnet { get; set; } = string.Empty;
@@ -35,6 +41,9 @@ public sealed class Estudiante : Persona
     public override string Rol => "Estudiante";
 }
 
+/// <summary>
+/// Docente de la universidad.
+/// </summary>
 public sealed class Docente : Persona
 {
     public string Especialidad { get; set; } = "Docencia universitaria";
@@ -43,6 +52,9 @@ public sealed class Docente : Persona
     public override string Rol => "Docente";
 }
 
+/// <summary>
+/// Personal administrativo de registro.
+/// </summary>
 public sealed class Administrativo : Persona
 {
     public string Cargo { get; set; } = "Administrativo";

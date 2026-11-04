@@ -8,6 +8,9 @@ using RegistroUdeM.Domain.Personas;
 
 namespace RegistroUdeM.Application.Services;
 
+/// <summary>
+/// Servicio de inscripción, notas e índice académico.
+/// </summary>
 public sealed class MatriculaService
 {
     private readonly IAlmacenRegistro _almacen;
@@ -56,6 +59,9 @@ public sealed class MatriculaService
     }
 }
 
+/// <summary>
+/// Servicio de pagos y detección de morosos.
+/// </summary>
 public sealed class PagoService
 {
     private readonly IAlmacenRegistro _almacen;
@@ -78,6 +84,9 @@ public sealed class PagoService
     public IReadOnlyList<Estudiante> EstudiantesMorosos() => Datos.Estudiantes.Where(e => !Datos.Pagos.Any(p => p.EstudianteId == e.Id && p.Pagado)).ToList();
 }
 
+/// <summary>
+/// Servicio de becas.
+/// </summary>
 public sealed class BecaService
 {
     private readonly IAlmacenRegistro _almacen;
@@ -97,6 +106,9 @@ public sealed class BecaService
     }
 }
 
+/// <summary>
+/// Reportes de solo lectura para el dashboard y la toma de decisiones.
+/// </summary>
 public sealed class ReporteService
 {
     private readonly IAlmacenRegistro _almacen;
@@ -122,6 +134,9 @@ public sealed class ReporteService
 
 
 
+/// <summary>
+/// Servicio de registro académico: estudiantes, docentes, carreras y asignaturas.
+/// </summary>
 public sealed class RegistroService
 {
     private readonly IAlmacenRegistro _almacen;

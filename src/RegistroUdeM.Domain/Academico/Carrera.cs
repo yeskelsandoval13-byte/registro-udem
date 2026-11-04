@@ -1,5 +1,8 @@
 namespace RegistroUdeM.Domain.Academico;
 
+/// <summary>
+/// Carrera universitaria.
+/// </summary>
 public class Carrera : Common.EntidadBase
 {
     public string Codigo { get; set; } = string.Empty;
@@ -9,6 +12,9 @@ public class Carrera : Common.EntidadBase
     public bool Activa { get; set; } = true;
 }
 
+/// <summary>
+/// Asignatura asociada a una carrera.
+/// </summary>
 public class Asignatura : Common.EntidadBase
 {
     public string Codigo { get; set; } = string.Empty;
@@ -27,6 +33,9 @@ public enum EstadoMatricula
     Cancelada
 }
 
+/// <summary>
+/// Matrícula de un estudiante en una asignatura.
+/// </summary>
 public class Matricula : Common.EntidadBase
 {
     public Guid EstudianteId { get; set; }

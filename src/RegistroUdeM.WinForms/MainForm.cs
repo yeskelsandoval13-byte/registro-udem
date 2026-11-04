@@ -8,6 +8,9 @@ using RegistroUdeM.Domain.Personas;
 
 namespace RegistroUdeM.WinForms;
 
+/// <summary>
+/// Ventana principal de Windows Forms para el registro universitario.
+/// </summary>
 public sealed class MainForm : Form
 {
     private readonly RegistroService _registro;

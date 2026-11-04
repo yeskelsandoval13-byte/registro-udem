@@ -9,6 +9,9 @@ public enum ConceptoPago
     Otro
 }
 
+/// <summary>
+/// Pago realizado por un estudiante.
+/// </summary>
 public class Pago : Common.EntidadBase
 {
     public Guid EstudianteId { get; set; }
@@ -27,6 +30,9 @@ public enum TipoBeca
     Excelencia
 }
 
+/// <summary>
+/// Beca asignada a un estudiante.
+/// </summary>
 public class Beca : Common.EntidadBase
 {
     public Guid EstudianteId { get; set; }
