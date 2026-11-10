@@ -8,10 +8,13 @@
 
 | Campo | Detalle |
 |---|---|
-| Estudiante | Compañera de clase |
-| Carrera | Ingeniería en Sistemas y Computación |
+| Universidad | Universidad de Managua (UdeM) |
+| Docente | ING. Gustavo Acevedo Martínez |
+| Estudiante | Julie Bustos |
+| Carrera | Ingeniería en computación y telemática |
+| Grupo | MI09A |
+| Fecha | 30/10/2026 |
 | Asignatura | Programación Orientada a Objetos (FI-134) |
-| Tecnología | C# 14 · .NET 10 · Windows Forms · xUnit |
 
 > "Formando profesionales con valores."
 
@@ -19,67 +22,184 @@
 
 ## Resumen
 
-RegistroUdeM es un avance de sistema para una universidad. Resuelve, mediante programación orientada a objetos, el registro de estudiantes y docentes, carreras y asignaturas, matrículas, calificaciones, pagos, becas y reportes.
+RegistroUdeM es un avance de sistema para la Universidad de Managua. Facilita el registro de estudiantes, docentes y personal administrativo, carreras, asignaturas, matrículas, calificaciones, pagos y becas.
 
-La solución se organiza en capas: dominio, aplicación, infraestructura, consola, Windows Forms, laboratorio de la Clase 03 y pruebas. El dominio concentra las reglas; la aplicación orquesta los casos de uso; la infraestructura persiste en JSON.
+La solución se organiza en capas: dominio, aplicación, infraestructura, consola, Windows Forms, laboratorio de la Clase 03 y pruebas. El dominio concentra las reglas; la aplicación orquesta los casos de uso; la infraestructura persiste en JSON y SQL Server.
 
 El diseño aplica herencia, polimorfismo y sobrecarga, e incluye la solución exacta de la Clase 03. Además, se incluye el diseño de base de datos relacional para SQL Server.
 
 ---
 
-## 1. Problema
+# FASE UNO: REQUERIMIENTOS DEL SISTEMA Y ANÁLISIS
 
-Una universidad necesita ordenar el registro académico y financiero de sus estudiantes: inscripción, calificaciones, pagos, becas y reportes. Cuando esa información está dispersa, aumentan los errores y se pierde trazabilidad.
+## 1. Definir los objetivos y necesidades del sistema
 
----
+**Objetivo general:** Desarrollar una aplicación de escritorio en C# orientada a la gestión integral del registro universitario, facilitando el control de estudiantes, docentes, carreras, asignaturas, matrículas, calificaciones, pagos y becas para la Universidad de Managua.
 
-## 2. Objetivos
+**Necesidades del sistema:**
+- Automatizar el registro académico y financiero.
+- Reducir errores en la inscripción y calificación.
+- Evitar pérdida de expedientes.
+- Optimizar el tiempo del personal de registro.
+- Generar reportes académicos y financieros.
 
-- Modelar el registro universitario con POO.
-- Aplicar herencia, polimorfismo y sobrecarga.
-- Implementar casos de uso verificables.
-- Persistir datos en JSON.
-- Diseñar una base de datos SQL Server.
-- Crear interfaz Windows Forms y consola.
-- Incluir pruebas automatizadas.
+## 2. Identificar los usuarios y sus requerimientos
 
----
+**Tipo de usuario:** Personal administrativo / registro académico.
 
-## 3. Alcance
+**Requerimientos funcionales:**
+- Módulo de autenticación: acceso seguro mediante usuario y contraseña.
+- Menú principal: navegación fluida a estudiantes, docentes, carreras, asignaturas, matrículas, pagos y becas.
+- Gestión de catálogos y registro: registrar, editar, eliminar y consultar estudiantes, docentes, carreras y asignaturas.
+- Matrículas: inscribir estudiantes, asignar notas y calcular índice.
+- Pagos: registrar pagos y detectar morosos.
+- Becas: asignar becas por tipo y porcentaje.
+- Reportes: resumen, estudiantes por carrera y mejores índices.
 
-### Incluido
-- Estudiantes, docentes y administrativos.
-- Carreras y asignaturas.
-- Matrículas y calificaciones.
-- Pagos y becas.
-- Reportes académicos y financieros.
-- Persistencia JSON.
-- Diseño de base de datos.
-- Interfaz Windows Forms y consola.
+**Requerimientos no funcionales:**
+- Plataforma: aplicación de escritorio desarrollada en C# (Windows Forms) orientada a objetos.
+- Interfaz: intuitiva, limpia y estandarizada.
+- Base de datos: almacenamiento seguro y centralizado en SQL Server.
+- Portabilidad: .NET 10.
 
-### Fuera de alcance
-- Autenticación y roles.
-- Integración completa ADO.NET.
-- Reportes PDF/Excel.
-- Recordatorios.
+## 3. Recopilar información sobre los tipos de datos que se almacenan y procesarán
 
----
+Se recopilaron y estructuraron los catálogos base que el sistema procesará:
 
-## 4. Arquitectura
-
-```mermaid
-flowchart TD
-    UI["RegistroUdeM.WinForms<br/>Interfaz"] --> APP["RegistroUdeM.Application<br/>Casos de uso"]
-    CON["RegistroUdeM.Console<br/>Consola"] --> APP
-    APP --> DOM["RegistroUdeM.Domain<br/>Reglas"]
-    INFRA["RegistroUdeM.Infrastructure<br/>Persistencia JSON"] -. implementa .-> ABS["IAlmacenRegistro"]
-    APP --> ABS
-    INFRA --> DOM
-```
+- **Estudiantes:** código, nombres, apellidos, documento, teléfono, correo, carrera, fecha de ingreso, estado e índice.
+- **Docentes:** código, nombres, apellidos, especialidad, grado académico, teléfono y correo.
+- **Administrativos:** código, nombres, apellidos, cargo y departamento.
+- **Carreras:** código, nombre, facultad y créditos totales.
+- **Asignaturas:** código, nombre, créditos y carrera.
+- **Matrículas:** estudiante, asignatura, período, nota, estado y fecha.
+- **Pagos:** estudiante, monto, concepto, fecha, estado y referencia.
+- **Becas:** estudiante, tipo, porcentaje, estado y observación.
 
 ---
 
-## 5. POO aplicado
+# FASE DOS: MODELO CONCEPTUAL
+
+## 4. Modelo conceptual de alto nivel (entidades y atributos)
+
+A partir de los requisitos se identificaron las entidades principales:
+
+- **Persona:** Id, Nombre, Apellido, Documento, Teléfono, Email.
+- **Estudiante:** Carnet, Carrera, FechaIngreso, Estado, Índice.
+- **Docente:** Especialidad, GradoAcadémico, Activo.
+- **Administrativo:** Cargo, Departamento.
+- **Carrera:** Código, Nombre, Facultad, CréditosTotales.
+- **Asignatura:** Código, Nombre, Créditos, Carrera.
+- **Matrícula:** Estudiante, Asignatura, Período, Nota, Estado.
+- **Pago:** Estudiante, Monto, Concepto, Fecha, Pagado.
+- **Beca:** Estudiante, Tipo, Porcentaje, Activa.
+
+## 5. Relaciones entre entidades
+
+| Relación | Entidades | Cardinalidad | Descripción |
+|---|---|---|---|
+| Tiene | Carrera - Asignatura | 1 : N | Una carrera tiene varias asignaturas. |
+| Pertenece | Estudiante - Carrera | N : 1 | Un estudiante pertenece a una carrera. |
+| Realiza | Estudiante - Matrícula | 1 : N | Un estudiante realiza varias matrículas. |
+| Recibe | Asignatura - Matrícula | 1 : N | Una asignatura recibe varias matrículas. |
+| Realiza | Estudiante - Pago | 1 : N | Un estudiante realiza varios pagos. |
+| Recibe | Estudiante - Beca | 1 : N | Un estudiante puede recibir varias becas. |
+
+## 6. Diagrama conceptual
+
+![Diagrama conceptual de base de datos](diagramas/bd-conceptual.png)
+
+---
+
+# FASE TRES: MODELADO LÓGICO
+
+## 7. Transformación a tablas
+
+Cada entidad se convierte en una tabla y cada atributo en una columna. El identificador principal se convierte en llave primaria (PK). En relaciones 1:N, la PK del lado "1" se coloca como FK en el lado "N".
+
+| Tabla | PK | FK |
+|---|---|---|
+| Personas | PersonaId | - |
+| Estudiantes | EstudianteId | PersonaId, CarreraId |
+| Docentes | DocenteId | PersonaId |
+| Administrativos | AdministrativoId | PersonaId |
+| Carreras | CarreraId | - |
+| Asignaturas | AsignaturaId | CarreraId |
+| Matriculas | MatriculaId | EstudianteId, AsignaturaId |
+| Pagos | PagoId | EstudianteId |
+| Becas | BecaId | EstudianteId |
+
+---
+
+# FASE CUATRO: NORMALIZACIÓN
+
+## 8. Normalización
+
+El modelo se encuentra en **1NF, 2NF y 3NF**:
+
+- Los atributos son atómicos.
+- No hay grupos repetitivos.
+- Las matrículas se guardan en una tabla separada.
+- Los datos personales no se repiten en las tablas hijas.
+- Los totales y reportes se calculan mediante consultas o vistas.
+- Las enumeraciones se validan con restricciones.
+
+Redundancias controladas:
+- `TipoPersona` y `Tipo` de beca se usan como discriminadores.
+- `Indice` se almacena como saldo académico mutable.
+
+---
+
+# FASE CINCO: DISEÑO FÍSICO
+
+## 9. Modelo físico
+
+Tipos de datos principales:
+- `UNIQUEIDENTIFIER` para identificadores.
+- `NVARCHAR` para texto.
+- `DECIMAL(5,2)` para notas e índices.
+- `DECIMAL(12,2)` para montos.
+- `DATETIME2(0)` para fechas.
+- `BIT` para estados booleanos.
+
+Índices sugeridos:
+- `IX_Matriculas_Estudiante`
+- `IX_Matriculas_Asignatura`
+- `IX_Pagos_Estudiante`
+- `IX_Becas_Estudiante`
+
+## 10. Diagrama de clases
+
+![Diagrama de clases](diagramas/clases.png)
+
+## 11. Arquitectura
+
+![Arquitectura](diagramas/arquitectura.png)
+
+---
+
+# FASE SEIS: IMPLEMENTACIÓN
+
+## 12. Implementación
+
+El sistema se implementa en C# con arquitectura por capas:
+- `RegistroUdeM.Domain`
+- `RegistroUdeM.Application`
+- `RegistroUdeM.Infrastructure`
+- `RegistroUdeM.Console`
+- `RegistroUdeM.WinForms`
+- `RegistroUdeM.Laboratorio`
+- `RegistroUdeM.Tests`
+
+Persistencia:
+- JSON local con guardado atómico.
+- SQL Server con `SqlAlmacenRegistro` y ADO.NET.
+
+Script SQL:
+- `docs/bd/registro_udem.sql`
+
+---
+
+## 13. POO aplicado
 
 ### Herencia
 - `Persona` → `Estudiante`, `Docente`, `Administrativo`
@@ -89,12 +209,15 @@ flowchart TD
 - `ReporteService` usa las entidades sin preguntar su tipo.
 
 ### Sobrecarga
-- `RegistrarEstudiante`, `RegistrarCarrera`, etc. se diferencian por parámetros en otros métodos del proyecto.
 - El laboratorio incluye sobrecarga exacta de la Clase 03.
+- Los servicios se diferencian por parámetros.
+
+### Encapsulamiento
+- `Indice`, `Estado`, `Activa` y validaciones controlan el estado.
 
 ---
 
-## 6. Clase 03
+## 14. Clase 03
 
 Se incluye la solución exacta en `src/RegistroUdeM.Laboratorio/Clase03/`:
 - `SeleccionFutbol` → `Futbolista`, `Entrenador`, `Masajista`
@@ -103,27 +226,7 @@ Se incluye la solución exacta en `src/RegistroUdeM.Laboratorio/Clase03/`:
 
 ---
 
-## 7. Base de datos
-
-Diseño relacional en `docs/bd/`:
-- Requisitos.
-- Modelo conceptual.
-- Modelo lógico.
-- Normalización.
-- Modelo físico.
-- Script SQL Server.
-- Diccionario de datos.
-
-Tablas principales:
-- `Personas`, `Estudiantes`, `Docentes`, `Administrativos`
-- `Carreras`, `Asignaturas`
-- `Matriculas`, `Pagos`, `Becas`
-
-La aplicación usa `SqlAlmacenRegistro` con ADO.NET para cargar y guardar datos en tiempo real en SQL Server.
-
----
-
-## 8. Pruebas
+## 15. Pruebas
 
 ```powershell
 dotnet build RegistroUdeM.slnx
@@ -132,22 +235,21 @@ dotnet run --project src/RegistroUdeM.Console
 dotnet run --project src/RegistroUdeM.WinForms
 ```
 
-## 10. Diagramas incluidos
+---
 
-### Arquitectura
+## 16. Conclusión
 
-![Arquitectura](diagramas/arquitectura.png)
-
-### Diagrama de clases
-
-![Diagrama de clases](diagramas/clases.png)
-
-### Modelo conceptual de base de datos
-
-![Modelo conceptual](diagramas/bd-conceptual.png)
+El avance presenta una base funcional, documentada y verificable para la entrega final, con POO, interfaz, persistencia y diseño de base de datos.
 
 ---
 
-## 9. Conclusión
+## 17. Anexos
 
-El avance presenta una base funcional, documentada y verificable para la entrega final, con POO, interfaz, persistencia y diseño de base de datos.
+- `README.md`
+- `ARQUITECTURA.md`
+- `DIAGRAMA_CLASES.md`
+- `CLASE_03.md`
+- `GUIA_ESTUDIO.md`
+- `docs/bd/README.md`
+- `docs/bd/registro_udem.sql`
+- `docs/AVANCE.docx`
